@@ -1,0 +1,86 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+																		// Сложный вариант
+	/*function median (arr){
+		do{
+	        var x=0;
+			for (var i=0;i<(arr.length-1);i++){
+				if (arr[i]>arr[i+1]){
+					var interval = arr[i];
+					arr[i]=arr[i+1];
+					arr[i+1] = interval;
+					x++;
+				}
+			}
+		} while (x>0);
+		if (arr.length%2==0)
+			return (arr[arr.length/2-1] + arr[arr.length/2])/2;
+		else
+			return arr[Math.floor(arr.length/2)];
+	}
+	alert(median([1,10,2,9,3,8,4,7,5,6]));  */
+
+
+
+
+
+
+																		// Хитрый вариант
+	/*function compareNumeric(a, b) {
+      if (a > b) return 1;
+      if (a < b) return -1; // Не обязательная запись. Работает и без нее.
+    }
+    
+    var arr = [1,10,2,9,3,8,4,7,5,6];
+    
+	arr = arr.sort(compareNumeric);
+    var median = (arr[Math.floor(arr.length/2)] + arr[arr.length -1 - Math.floor(arr.length/2)])/2;
+    alert(median);*/
+
+
+
+
+
+    																	// Тот же хитрый вариант, но проще записан
+    /*var arr = [1,10,2,9,3,8,4,7,5,6];
+   
+    arr.sort(function(a,b){
+    	if (a>b) return 1;
+    	if (a<b) return -1;
+    });
+    
+    var median = (arr[Math.floor(arr.length/2)] + arr[arr.length -1 - Math.floor(arr.length/2)])/2;
+    alert(median);*/
+
+    
+
+
+
+
+    																	// То же, только еще проще
+    /*var arr = [1,10,2,9,3,8,4,7,5,6];
+   
+    arr.sort((a,b) => a-b);
+    
+    var median = (arr[Math.floor(arr.length/2)] + arr[arr.length -1 - Math.floor(arr.length/2)])/2;
+    alert(median);*/
+
+
+
+
+// ЕЩЕ ОДИН ВАРИАНТ
+
+	function median (array) {
+		return array.sort((a,b) => a-b)
+					.slice(Math.ceil(array.length/2 - 1), Math.ceil(array.length/2 + 0.5))
+					.reduce((x,y) => (x + y) / 2);
+	}
+	alert ( median ([1, 2, 3, 4, 5]) );
+
+
+
+
+
+
+
+</script>

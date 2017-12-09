@@ -1,0 +1,41 @@
+<meta charset="utf-8"> 
+<script type="text/javascript">
+
+function pit (string){
+	var list = {};
+	var arr = string.toLowerCase().match(/[a-z]/g).sort();
+	arr.forEach((item,i) => list[item] = (list[item] ? list[item] : 0) + 1); // (list[item]||0) + 1) - два варианта написания одного и того же.
+	
+	var max = -Infinity;
+	for (let key in list){
+		if ((/^[a-z]/).test(key)&&list[key]>max){
+			max = list[key];
+			var result = key;
+		}
+		
+	}
+	return result;
+
+}
+alert(pit("One")); 
+
+
+
+// ВТОРОЙ ВАРИАНТ
+
+function mostWanted (text) {
+		var quantity = -1;
+		var result = "";
+		text.toLowerCase().match(/[a-z]/g).sort()
+                   .forEach(function(elem, index, arr) {
+  				 		if ( (arr.lastIndexOf(elem) - arr.indexOf(elem)) > quantity ) {
+  				 			result = elem;
+  				 			quantity = arr.lastIndexOf(elem) - arr.indexOf(elem);
+					 	} 
+   				    });
+        return result;
+	}
+
+alert ( mostWanted ("Hello World!") );
+
+</script>

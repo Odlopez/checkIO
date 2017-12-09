@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	var array =	[
+		[1, 0, 0, 1, 0],
+	 	[0, 1, 0, 0, 0],
+	 	[0, 0, 1, 0, 1],
+	 	[1, 0, 0, 0, 0],
+	 	[0, 0, 1, 0, 0]
+	 	];
+
+	var line = 0;
+	var column = 2;
+	/*var result =0;
+	array.forEach(function(item, i){
+		if ((line+1)>=i&&i>=(line-1)){
+			item.forEach(function(item, i){
+				if ((column+1)>=i&&i>=(column-1)){
+					if (item==1){
+						result++;
+					}
+				}
+			});
+		}		
+	});
+	if (array[line][column]==1)
+		result= result-1;
+	alert(result);*/
+
+
+
+
+
+	// ВАРИАНТ ДВА
+	/*function countNeighbours(data, row, col){
+	    var s = 0, adj = [[-1, 1], [-1, 0], [-1, -1], [0, 1], [0, -1], [1, 1], [1, 0], [1, -1]];
+	    for (let a of adj){
+	      let x = row + a[0], y = col + a[1];
+	      if (data[x] && data[x][y]) s++;
+	    }
+	    return s;
+	}
+  	alert(countNeighbours(array,line,column));*/
+
+
+
+  	// ВАРИАНТ ТРИ
+
+  	function countNeighbours (array, line, column) {
+		var newList = 0;
+		array.forEach(function (item, index, arr) {
+			item.forEach(function(elem, i) {
+				if (Math.abs(index - line) < 2 && Math.abs(i - column) < 2) {
+					newList += arr[index][i];
+				}
+			})
+		})
+		return newList - array[line][column];
+	}
+
+	alert (countNeighbours (array, line, column) );
+
+
+
+</script>

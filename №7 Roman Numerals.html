@@ -1,0 +1,73 @@
+<meta charset="utf-8"> 
+<script type="text/javascript">
+
+  // ПЕРВЫЙ ВАРИАНТ
+  /*function romanNumerals(number) {  
+    var result = "";
+    var array = [["M",1000],
+      ["D",500],
+      ["C",100],
+      ["L",50],
+      ["X",10],
+      ["V",5],
+      ["I",1]];
+
+    array.forEach(function(item,i){
+      item.push(parseInt(number/item[1]));
+      number -= item[1]*item[2];
+    })
+
+    for (var i = 0; i<array.length; i++){
+
+      if (i%2 == 1) {
+        if((array[i][2] + array[i+1][2])==5) {
+          result += array[i+1][0] + array[i-1][0]; 
+        } else {
+         result += array[i][0].repeat(array[i][2]);
+        }
+
+      } else {
+        if(array[i][2] == 4 && array[i-1][2] == 1) {
+          continue;
+        } else if (array[i][2] == 4) {
+          result += array[i][0] + array[i-1][0];
+        } else {
+          result += array[i][0].repeat(array[i][2]);
+        } 
+      } 
+    }
+
+    return result;
+  } 
+
+  alert(romanNumerals(+prompt()));*/
+
+  // ВТОРОЙ ВАРИАНТ
+
+  alert ( romanNumerals (44) );
+
+  function romanNumerals (number) {
+    var rom = [{numeral: "M", value: 1000, tally: 0},
+           {numeral: "CM", value: 900, tally: 0},
+           {numeral: "D", value: 500, tally: 0},
+           {numeral: "CD", value: 400, tally: 0},
+           {numeral: "C", value: 100, tally: 0},
+           {numeral: "XC", value: 90, tally: 0},
+           {numeral: "L", value: 50, tally: 0},
+           {numeral: "XL", value: 40, tally: 0},
+           {numeral: "X", value: 10, tally: 0},
+           {numeral: "IX", value: 9, tally: 0},
+           {numeral: "V", value: 5, tally: 0},
+           {numeral: "IV", value: 4, tally: 0},
+           {numeral: "I", value: 1, tally: 0}];
+    var result = "";
+
+    rom.forEach(function (elem) {
+      elem.tally = Math.floor(number / elem.value);
+      number = number - elem.tally * elem.value;
+      result += elem.numeral.repeat(elem.tally); 
+    });
+    return result;
+  }
+
+</script>

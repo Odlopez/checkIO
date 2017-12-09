@@ -1,0 +1,53 @@
+<meta charset="utf-8"> 
+<script type="text/javascript">
+
+function longRepeat (string){
+	var l=string[0];
+	var x=+0;
+	var arr=[];
+	for (let i of string){
+		if (i==l){
+			arr[x] = (arr[x]||0)+1;
+			l=i;
+		} else{
+			x++;
+			arr[x] = (arr[x]||0)+1;
+			l=i;
+		}
+	}
+	if(Math.max(...arr)>=0){
+		return Math.max(...arr);
+	} else return 0; 
+}
+alert(longRepeat('sdsffffse'));
+
+
+//ВТОРОЙ ВАРИАНТ
+
+function longRepeat (text) {
+	var result = [-1];
+	text.split("").forEach(function (elem, i, arr) {
+		if (arr[i+1] != elem) {
+			result.push(i);
+		}
+	})
+	return Math.max(...result.map((el, i, arr) => (arr[i+1] || el) - el));
+}
+
+alert ( longRepeat ('aaakka') );
+
+
+
+// ЧУЖОЕ РЕШЕНИЕ!!!!!!!
+/*function longRepeat(line) {
+    // length the longest substring that consists of the same char
+    if (line.length == 0) return 0;
+    if (line.match(/(.)\1+/g)) {
+    	alert (line.match(/(.)\1+/g));
+        return Math.max(...line.match(/(.)\1+/g).map(item => item.length));
+    } else return 1;
+}
+
+longRepeat('sdiisffffiise');*/
+
+</script>

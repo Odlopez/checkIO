@@ -1,0 +1,110 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	var array =	[
+		[7, 2, 7, 2, 8],
+        [2, 9, 4, 1, 7],
+        [3, 8, 6, 2, 4],
+        [2, 5, 2, 9, 1],
+        [6, 6, 5, 4, 5]
+	 	];
+	 // Клевый вариант
+	/*function weakPoint(matrix){
+		var row = {};
+		var column = {};
+		var minRow = 0;
+		var minColumn = 0;
+		matrix.forEach((item, i) =>{
+			for (var x = 0; x < item.length; x++){
+				row[i] = (row[i] || 0) + item [x];
+				column[x] = (column[x]||0) + item[x];
+			}
+			if (row[minRow]>row[i]){
+				minRow = i;
+			}
+		});
+		var col = [];
+		for (var key in column){
+			if (column[key-1]>column[key]){
+				minColumn = key;
+			}
+		}
+		var result = [];
+		result.push(minRow);
+		result.push(minColumn);
+		return result;
+	}
+
+	alert(weakPoint(array));*/
+
+	// Отстойный вариант!
+/*	function weakPoint(matrix){
+		var row = [];
+		var column = [];
+		for (var i = 0; i<matrix.length; i++){
+			for (var x = 0; x<matrix[i].length; x++){
+				row[i] = (row[i]||0) + matrix[i][x];
+				column[x] = (column[x]||0) + matrix[i][x];
+			}
+		}
+		var result = [Infinity,Infinity];
+		var minRow = 0;
+		var  minColumn = 0;
+		for (var i = 0; i < row.length; i++){
+			if (result[0]>row[i]){
+				result[0] = row[i];
+				minRow = i;
+			}
+			if (result[1] > column[i]){
+				result[1] = column[i];
+				minColumn = i;
+			}
+		}
+		result[0] = minRow;
+		result[1] = minColumn;
+		return result;
+	}
+	
+	alert(weakPoint(array));*/
+
+// И ЕЩЕ ОДИН РАБОЧИЙ КРУТОЙ ВАРИАНТ!
+
+/*function weakPoint(matrix){
+    let rows = [], cols = [];
+    matrix.forEach((row, r) => row.forEach((v, c) => {
+        rows[r] = (rows[r] || 0) + v;
+        cols[c] = (cols[c] || 0) + v;
+    }));
+    return [rows.indexOf(Math.min.apply(Math,rows)), cols.indexOf(Math.min.apply(Math,cols))]
+}
+var arr = [[7, 2, 7, 2, 8],
+           [2, 9, 4, 1, 7],
+           [3, 8, 6, 2, 4],
+           [2, 5, 2, 9, 1],
+           [6, 6, 5, 4, 5]];
+alert(weakPoint(arr));
+Array.prototype.max = function(){
+	return Math.max.apply(null, this);
+};
+alert(arr.prototype.max);*/
+
+
+// Последний вариант
+    function weakPoint (array) {      
+	    var row = [];
+	    var column = [];
+	    for (var i = 0; i < array.length; i ++) {
+	    	row[i] = array[i].reduce((a,b) => a + b);
+	    	array[i].forEach(function(elem, item, arr) {
+	    		column[item] = (column[item] || 0) + arr[item];
+	    	})
+	    }
+	    return [row.indexOf(Math.min(...row)),column.indexOf(Math.min(...column))]  ;
+	}
+
+	alert ( weakPoint (array) );
+
+
+
+
+
+</script>
