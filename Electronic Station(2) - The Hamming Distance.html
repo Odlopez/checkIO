@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	function hammingDistance(n,m){
+		var first = Math.max(...[n,m]).toString(2).split('').reverse();
+		var second = Math.min(...[n,m]).toString(2).split('').reverse();
+		var obj = {};
+		var result = 0;
+		for (var i = first.length - 1; i > -1; i--) {
+			obj[i] = (obj[i] || 0) + parseInt(first[i]) + (parseInt(second[i]) || 0);	
+			result += obj[i]%2;
+		}
+		return result;
+	}
+	hammingDistance(16,15);
+</script>
