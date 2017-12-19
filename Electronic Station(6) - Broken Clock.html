@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	function brokenClock (arg1, arg2, arg3) {
+		var startTime = 0, endTime = 0;
+		arg1.split(":").reverse().forEach( function (elem, i) {
+			startTime += elem * Math.pow (60, i);
+			endTime += arg2.split(":").reverse()[i] * Math.pow (60, i);
+		});
+		var errorStep = arg3.split(" ");
+		errorStep.map (function (elem, i) {
+			["seco", "minu", "hour"].forEach (function (element, index) {
+				if (elem.substring(0, 4) == element) {
+					errorStep[i] = index;
+				}
+			})
+		});
+
+		var errorRatio = parseInt(errorStep[3] * Math.pow (60, errorStep[4])) / (parseInt (errorStep[3] * Math.pow (60, errorStep[4]) + parseInt(errorStep[0]) * Math.pow (60, errorStep[1])));
+
+		var result = [];
+		result[0] = Math.floor(Math.round ((endTime - startTime) * errorRatio + startTime) / 3600);
+		result[1] =  Math.floor((Math.round ((endTime - startTime) * errorRatio + startTime) - result[0] * 3600) / 60);
+		result[2] =  Math.floor (((endTime - startTime) * errorRatio + startTime) - result[1] * 60 - result[0] * 3600);
+
+		for (var i = 0; i < 3; i++) {
+			result[i] = result[i].toString().padStart(2, "0");
+		}
+		return result.join(":");
+	}
+		
+	alert ( brokenClock('00:00:00', '00:00:30', '+2 seconds at 6 seconds') );
+
+
+</script>
