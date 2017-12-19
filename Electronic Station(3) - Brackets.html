@@ -1,0 +1,30 @@
+<meta charset="utf-8"> 
+<script type="text/javascript">
+
+function brackets (expression){
+	var open = ["(","{","["];
+	var closed = [")","}","]"];
+	var result = true;
+	var array = expression.match(/[\(\)\{\}\[\]]/g) || [];
+	do {
+		if (array.length%2 == 1) {
+			return false;
+		}
+		for (var i = 0; i < array.length; i++ ) {
+			if (closed.some((elem) => elem == array[i])) {
+				if (open.indexOf(array[i-1]) == closed.indexOf(array[i])) {
+					array.splice(i-1,2);
+					result = true;
+					break;
+				} else {
+					result = false;
+					break;
+				}
+			} else result = false;
+		}
+	} while (result == true && array.length > 0);
+	return result;
+}
+alert( brackets(prompt()) ); 
+
+</script>
